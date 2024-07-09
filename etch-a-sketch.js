@@ -1,12 +1,24 @@
 const container = document.querySelector(".container");
 
 
+const gridContainer = document.createElement("div");
+gridContainer.classList.add("gridContainer");
+container.appendChild(gridContainer);
+
+const title = document.createElement("div");
+title.classList.add("title");
+title.textContent = "Etch-A-Sketch";
+container.insertBefore(title, gridContainer);
+
+
+
+
 function deleteGrid() {
-    const container = document.querySelector(".container");
-    let lastBox = container.lastElementChild;
+    const gridContainer = document.querySelector(".gridContainer");
+    let lastBox = gridContainer.lastElementChild;
     while (lastBox){
-        container.removeChild(lastBox);
-        lastBox = container.lastElementChild;
+        gridContainer.removeChild(lastBox);
+        lastBox = gridContainer.lastElementChild;
     }
 }
 
@@ -15,7 +27,7 @@ function createGrid(numberOfBoxes) {
         for(let j = 0; j < numberOfBoxes; j++){
             const box = document.createElement("div");
             //box.textContent = "b";
-            container.appendChild(box);
+            gridContainer.appendChild(box);
             let boxPercentage = 100 / numberOfBoxes;
             box.style.flexBasis = boxPercentage + "%";
             box.classList.add("box");
@@ -36,12 +48,6 @@ function createHover() {
             const newGreen = randomRGB();
             const newBlue = randomRGB();
             boxes[i].style.backgroundColor = "rgb(" + newRed + ", " + newGreen + ", " + newBlue + ")";
-        });
-    }
-
-    for (let i = 0; i < boxes.length; i++){
-        boxes[i].addEventListener("mouseleave", () => {
-            boxes[i].style.backgroundColor = "white";
         });
     }
 }
