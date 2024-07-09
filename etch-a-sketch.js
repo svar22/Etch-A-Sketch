@@ -1,10 +1,16 @@
 const container = document.querySelector(".container");
 
-function createGrid(numberOfBoxes) {
-    // while (container.hasChildNodes){
-    //     container.removeChild(container.lastChild);
-    // }
 
+function deleteGrid() {
+    const container = document.querySelector(".container");
+    let lastBox = container.lastElementChild;
+    while (lastBox){
+        container.removeChild(lastBox);
+        lastBox = container.lastElementChild;
+    }
+}
+
+function createGrid(numberOfBoxes) {
     for (let i = 0; i < numberOfBoxes; i++){
         for(let j = 0; j < numberOfBoxes; j++){
             const box = document.createElement("div");
@@ -18,7 +24,7 @@ function createGrid(numberOfBoxes) {
 }
 
 
-function hover() {
+function createHover() {
     const boxes = document.querySelectorAll(".box");
 
     for (let i = 0; i < boxes.length; i++){
@@ -59,10 +65,12 @@ resizeButton.addEventListener("click", () => {
     else {
         return;
     }
-
+    deleteGrid();
+    createGrid(newGridSize);
+    createHover();
 });
 
 createGrid(16);
-hover();
+createHover();
 
 
