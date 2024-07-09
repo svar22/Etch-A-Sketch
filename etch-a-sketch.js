@@ -23,13 +23,19 @@ function createGrid(numberOfBoxes) {
     }
 }
 
+function randomRGB() {
+    return Math.floor(Math.random() * 256);
+}
 
 function createHover() {
     const boxes = document.querySelectorAll(".box");
 
     for (let i = 0; i < boxes.length; i++){
         boxes[i].addEventListener("mouseover", () => {
-            boxes[i].style.backgroundColor = "magenta";
+            const newRed = randomRGB();
+            const newGreen = randomRGB();
+            const newBlue = randomRGB();
+            boxes[i].style.backgroundColor = "rgb(" + newRed + ", " + newGreen + ", " + newBlue + ")";
         });
     }
 
